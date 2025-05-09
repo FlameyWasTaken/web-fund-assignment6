@@ -1,10 +1,9 @@
 <?php
 // Подключение к БДшке
-$connection = pg_connect("host=localhost dbname=assignment6 user=postgres password=1337");
+$connection = new mysqli("localhost:3306", "root", "1337", "assignment6");
 
-if (!$connection) {
-    echo "Error connecting to the database.";
-    exit;
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
 }
 
 // Проверяем, что форма была отправлена
@@ -14,12 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password_login'];
 
     // SQL Запрос
-    $sql = "SELECT * FROM users WHERE username = $1";
-    $result = pg_query_params($connection, $sql, array($username));
+    $stmt = $connection->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($result && pg_num_rows($result) > 0) {
+    if ($result && $result->num_rows > 0) {
         // Извлекаем данные пользователя
-        $user = pg_fetch_assoc($result);
+        $user = $result->fetch_assoc();
 
         // Проверяем введённый пароль
         if (password_verify($password, $user['password'])) {
@@ -32,9 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo "The username with such username hasn't been found.";
     }
+
+    $stmt->close();
 }
 
 // Закрываем соединение с базой данных
-pg_close($connection);
+$connection->close();
 ?>
 

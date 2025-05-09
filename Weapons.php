@@ -212,10 +212,10 @@ if (isset($_GET['logged_in'])) {
             <div class="col-md-4 mb-4">
                 <div class="card custom-card">
                     <div class="card-img">
-                        <img src="DMC Image/weapons/Yamato_29.jpg" alt="Yamato_29">
+                        <img src="DMC Image/weapons/Yamato.jpg" alt="Yamato">
                     </div>
                     <div class="card-info">
-                        <h3>Yamato_29</h3>
+                        <h3>Yamato</h3>
                         <p>Yamato is the signature blade of <a href="Vergil.php">Vergil</a> and appears in
                             DmC: Devil May Cry. It was handed down to him by his father,
                             Sparda.</p>
