@@ -1,0 +1,42 @@
+# IDE / editor folders
+.vscode/
+.idea/
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache
+.cache/
+__pycache__/
+*.pyc
+
+# Environment files
+.env
+
+# Composer / PHP vendor
+vendor/
+
+# Node (если используешь вдруг)
+node_modules/
+
+# Uploads / temporary user files
+uploads/
+*.bak
+*.tmp
+
+# Database dumps
+*.sql
+*.sqlite
+*.db
+
+# Misc
+*.swp
+*.swo
